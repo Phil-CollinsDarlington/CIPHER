@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Makes the profile page responsive on phones and computers. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Player Profile | CIPHER</title>
+
+    <!-- Reuse CIPHER's existing visual design. -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+
+    <style>
+        /* Profile-specific styles, isolated from the main stylesheet. */
+        .profile-container {
+            width: min(92%, 680px);
+            margin: 50px auto;
+        }
+
+        .profile-card {
+            padding: 28px;
+            border: 1px solid #303a35;
+            border-radius: 16px;
+            background: #111713;
+        }
+
+        .profile-card h1 {
+            margin-top: 0;
+        }
+
+        .profile-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .profile-form label {
+            display: grid;
+            gap: 8px;
+        }
+
+        .profile-form input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #3b4940;
+            border-radius: 8px;
+            background: #090d0a;
+            color: #ffffff;
+        }
+
+        .profile-form button,
+        .profile-actions a,
+        .profile-actions button {
+            padding: 11px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .profile-form button {
+            border: 0;
+            background: #b7ff43;
+            color: #10150b;
+            font-weight: bold;
+        }
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .profile-actions a,
+        .profile-actions button {
+            border: 1px solid #465348;
+            background: transparent;
+            color: #ffffff;
+        }
+
+        #profile-message {
+            min-height: 24px;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-meta {
+            color: #a8b5aa;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="profile-container">
+        <section class="profile-card">
+            <p>CIPHER // PLAYER IDENTITY</p>
+            <h1>Your Player Profile</h1>
+
+            <p>
+                Your identity follows you through the world of
+                Crack the Campus.
+            </p>
+
+            <!-- Shows loading, success, and error messages. -->
+            <p id="profile-message" role="status" aria-live="polite">
+                Loading your profile...
+            </p>
+
+            <form id="profile-form" class="profile-form" hidden>
+                <label for="display-name">
+                    Display name
+                    <input
+                        id="display-name"
+                        name="display_name"
+                        type="text"
+                        minlength="2"
+                        maxlength="40"
+                        autocomplete="nickname"
+                        required
+                    >
+                </label>
+
+                <label for="avatar-url">
+                    Avatar image URL (optional)
+                    <input
+                        id="avatar-url"
+                        name="avatar_url"
+                        type="url"
+                        maxlength="500"
+                        placeholder="https://example.com/avatar.png"
+                    >
+                </label>
+
+                <p class="profile-meta">
+                    Your email is managed securely by CIPHER
+                    authentication.
+                </p>
+
+                <button id="save-profile" type="submit">
+                    Save Profile
+                </button>
+            </form>
+
+            <p id="profile-created" class="profile-meta"></p>
+
+            <div class="profile-actions">
+                <a href="dashboard.html">Back to Dashboard</a>
+                <button id="sign-out" type="button">Sign Out</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Load the profile logic as a JavaScript module. -->
+    <script type="module" src="assets/js/profile.js"></script>
+    <script type="module" src="assets/js/theme.js"></script>
+</body>
+</html>

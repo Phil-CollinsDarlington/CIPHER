@@ -1,0 +1,684 @@
+/* ============================================================
+   CIPHER
+   FILE: auth.css
+
+   PURPOSE:
+   Style the registration and login pages.
+
+   DESIGN:
+   - Deep charcoal background
+   - Electric-green accents
+   - White and silver typography
+   - Terminal-inspired details
+   - Responsive layouts
+
+   FUTURE ENHANCEMENTS:
+   - Password strength indicator
+   - Animated form transitions
+   - Additional accessibility refinements
+   ============================================================ */
+
+
+/* ============================================================
+   1. DESIGN TOKENS
+   Centralized values make future redesigns easier.
+   ============================================================ */
+
+:root {
+    --cipher-bg: #080b0a;
+    --cipher-panel: #101512;
+    --cipher-panel-light: #151c18;
+
+    --cipher-green: #b6ff4a;
+    --cipher-green-dark: #85c934;
+
+    --cipher-text: #f1f5f1;
+    --cipher-muted: #9aa69c;
+
+    --cipher-border: rgba(182, 255, 74, 0.17);
+
+    --cipher-error: #ff7777;
+    --cipher-success: #b6ff4a;
+
+    --cipher-radius: 18px;
+
+    --cipher-font: Arial, Helvetica, sans-serif;
+}
+
+
+/* ============================================================
+   2. GLOBAL RESET
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: var(--cipher-font);
+
+    color: var(--cipher-text);
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(182, 255, 74, 0.07),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(182, 255, 74, 0.04),
+            transparent 30%
+        ),
+        var(--cipher-bg);
+}
+
+
+/* Keep form elements consistent with the page typography. */
+
+button,
+input {
+    font: inherit;
+}
+
+a {
+    color: var(--cipher-green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   3. HEADER
+   ============================================================ */
+
+.auth-header {
+    width: min(1200px, calc(100% - 40px));
+
+    margin: 0 auto;
+    padding: 26px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+/* CIPHER wordmark. */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--cipher-text);
+
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+}
+
+.brand:hover {
+    text-decoration: none;
+}
+
+
+/* Three-bar symbol used as a temporary CSS logo. */
+
+.brand-mark {
+    height: 27px;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.brand-mark span {
+    width: 5px;
+
+    display: block;
+
+    background: var(--cipher-green);
+    border-radius: 2px;
+}
+
+.brand-mark span:nth-child(1) {
+    height: 14px;
+}
+
+.brand-mark span:nth-child(2) {
+    height: 22px;
+}
+
+.brand-mark span:nth-child(3) {
+    height: 18px;
+}
+
+
+.header-link {
+    color: var(--cipher-muted);
+    font-size: 0.9rem;
+}
+
+.header-link strong {
+    color: var(--cipher-green);
+}
+
+
+/* ============================================================
+   4. MAIN PAGE LAYOUT
+   ============================================================ */
+
+.auth-layout {
+    width: min(1120px, calc(100% - 40px));
+
+    margin: 45px auto 80px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(360px, 460px);
+
+    align-items: center;
+    gap: 70px;
+}
+
+
+/* ============================================================
+   5. LEFT VISUAL PANEL
+   ============================================================ */
+
+.auth-visual {
+    max-width: 540px;
+}
+
+.eyebrow {
+    display: inline-block;
+
+    color: var(--cipher-green);
+
+    font-size: 0.72rem;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+    line-height: 1.6;
+}
+
+
+.auth-visual h1 {
+    margin: 24px 0;
+
+    font-size: clamp(2.6rem, 5vw, 4.5rem);
+    font-weight: 900;
+
+    letter-spacing: -0.06em;
+    line-height: 1.05;
+}
+
+
+.auth-visual > p {
+    max-width: 460px;
+
+    color: var(--cipher-muted);
+
+    font-size: 1.02rem;
+    line-height: 1.9;
+}
+
+
+/* ============================================================
+   6. TERMINAL PANEL
+   ============================================================ */
+
+.visual-terminal {
+    margin-top: 40px;
+    padding: 22px;
+
+    border: 1px solid var(--cipher-border);
+    border-radius: 12px;
+
+    background: rgba(16, 21, 18, 0.8);
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+
+.terminal-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding-bottom: 15px;
+    margin-bottom: 16px;
+
+    border-bottom: 1px solid var(--cipher-border);
+
+    color: var(--cipher-muted);
+
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+}
+
+
+.terminal-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--cipher-green);
+    opacity: 0.75;
+}
+
+
+.terminal-heading span:last-child {
+    margin-left: auto;
+}
+
+
+.visual-terminal p {
+    color: var(--cipher-muted);
+
+    font-family: monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+}
+
+
+.visual-terminal .terminal-success {
+    color: var(--cipher-green);
+}
+
+
+/* ============================================================
+   7. AUTHENTICATION CARD
+   ============================================================ */
+
+.auth-card {
+    width: 100%;
+
+    padding: 34px;
+
+    border: 1px solid var(--cipher-border);
+    border-radius: var(--cipher-radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(21, 28, 24, 0.97),
+            rgba(12, 16, 13, 0.98)
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.3);
+}
+
+
+.card-heading {
+    margin-bottom: 26px;
+}
+
+
+.card-heading h2 {
+    margin: 12px 0;
+
+    font-size: 1.8rem;
+    letter-spacing: -0.04em;
+}
+
+
+.card-heading p {
+    margin: 0;
+
+    color: var(--cipher-muted);
+
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   8. GOOGLE BUTTON
+   ============================================================ */
+
+.google-button {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 12px 16px;
+
+    color: var(--cipher-text);
+    background: #181e1a;
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.google-button > span {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 1.1rem;
+}
+
+
+.google-button:hover {
+    background: #202922;
+    border-color: var(--cipher-green);
+}
+
+
+.google-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+
+/* ============================================================
+   9. FORM DIVIDER
+   ============================================================ */
+
+.form-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin: 24px 0;
+
+    color: var(--cipher-muted);
+
+    font-size: 0.64rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+    text-align: center;
+}
+
+
+.form-divider::before,
+.form-divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--cipher-border);
+}
+
+
+/* ============================================================
+   10. FORM FIELDS
+   ============================================================ */
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--cipher-text);
+
+    font-size: 0.83rem;
+    font-weight: 700;
+}
+
+
+.form-group input {
+    width: 100%;
+    min-height: 47px;
+
+    padding: 12px 14px;
+
+    color: var(--cipher-text);
+    background: #0a0e0b;
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 8px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+    color: #68736a;
+}
+
+
+.form-group input:focus {
+    border-color: var(--cipher-green);
+
+    box-shadow:
+        0 0 0 3px rgba(182, 255, 74, 0.09);
+}
+
+
+.form-group small {
+    display: block;
+
+    margin-top: 7px;
+
+    color: var(--cipher-muted);
+
+    font-size: 0.72rem;
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   11. TERMS CHECKBOX
+   ============================================================ */
+
+.checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin: 22px 0;
+
+    color: var(--cipher-muted);
+
+    font-size: 0.78rem;
+    line-height: 1.7;
+}
+
+
+.checkbox-row input {
+    margin-top: 4px;
+
+    accent-color: var(--cipher-green);
+}
+
+
+/* ============================================================
+   12. PRIMARY BUTTON
+   ============================================================ */
+
+.primary-button {
+    width: 100%;
+    min-height: 49px;
+
+    padding: 13px 18px;
+
+    color: #10150b;
+    background: var(--cipher-green);
+
+    border: none;
+    border-radius: 8px;
+
+    font-weight: 900;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.primary-button:hover {
+    background: #c9ff80;
+    transform: translateY(-1px);
+}
+
+
+.primary-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+
+/* ============================================================
+   13. FORM MESSAGES
+   ============================================================ */
+
+.form-message {
+    display: none;
+
+    margin: 16px 0;
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 0.82rem;
+    line-height: 1.7;
+}
+
+
+.form-message.visible {
+    display: block;
+}
+
+
+.form-message.error {
+    color: #ffc4c4;
+
+    border: 1px solid rgba(255, 119, 119, 0.3);
+    background: rgba(255, 119, 119, 0.08);
+}
+
+
+.form-message.success {
+    color: var(--cipher-green);
+
+    border: 1px solid var(--cipher-border);
+    background: rgba(182, 255, 74, 0.06);
+}
+
+
+/* ============================================================
+   14. FOOTERS
+   ============================================================ */
+
+.auth-footer {
+    margin: 24px 0 0;
+
+    color: var(--cipher-muted);
+
+    font-size: 0.82rem;
+    text-align: center;
+}
+
+
+.auth-footer a {
+    font-weight: 700;
+}
+
+
+.guest-note {
+    margin-top: 15px;
+}
+
+
+/* ============================================================
+   15. RESPONSIVE LAYOUT
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+    .auth-layout {
+        grid-template-columns: 1fr;
+
+        max-width: 520px;
+
+        gap: 35px;
+        margin-top: 25px;
+    }
+
+    .auth-visual {
+        max-width: 100%;
+    }
+
+    .auth-visual h1 {
+        font-size: 3rem;
+    }
+
+    .visual-terminal {
+        display: none;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .auth-header {
+        width: calc(100% - 28px);
+
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .auth-layout {
+        width: calc(100% - 28px);
+
+        margin-top: 15px;
+        margin-bottom: 40px;
+    }
+
+    .auth-card {
+        padding: 23px 19px;
+    }
+
+    .auth-visual h1 {
+        font-size: 2.6rem;
+    }
+
+    .header-link {
+        font-size: 0.8rem;
+    }
+}

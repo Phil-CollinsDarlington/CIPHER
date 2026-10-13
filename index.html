@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- Essential page settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<!-- Browser tab and search engine information -->
+<title>CIPHER | Crack the Campus</title>
+<meta
+    name="description"
+    content="Enter CIPHER, the ultimate campus mystery. Solve encrypted puzzles, scan QR checkpoints, build teams, and compete to crack the campus."
+>
+<meta name="theme-color" content="#090b0a">
+
+<!-- Fonts: imported from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Our stylesheet -->
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/themes.css">
+
+<!-- Our JavaScript -->
+<script src="assets/js/app.js" defer></script>
+<script type="module" src="assets/js/theme.js"></script>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Background decorations -->
+<div class="ambient ambient-one" aria-hidden="true"></div>
+<div class="ambient ambient-two" aria-hidden="true"></div>
+<div class="grid-overlay" aria-hidden="true"></div>
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+
+        <!-- BRAND: Edit the name here if necessary -->
+        <a href="#home" class="brand" aria-label="CIPHER home">
+            <span class="brand-icon" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <span class="brand-name">CIPHER<span>.</span></span>
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Navigation links -->
+        <div class="nav-links" id="navLinks">
+
+            <a href="#how-it-works">How It Works</a>
+            <a href="#challenges">Challenges</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="login.html" class="nav-login">Log In</a>
+            <a href="login.html" class="button button-small button-primary">
+                Enter CIPHER <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+    </nav>
+</header>
+
+
+<main>
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero container" id="home">
+
+        <div class="hero-content">
+
+            <div class="status-label">
+                <span class="status-dot"></span>
+                <span>THE CAMPUS IS YOUR PLAYGROUND</span>
+            </div>
+
+            <p class="eyebrow">A NEW KIND OF CAMPUS COMPETITION</p>
+
+            <h1>
+                Think deeper.<br>
+                <span class="text-gradient">Look closer.</span><br>
+                Crack the campus.
+            </h1>
+
+            <p class="hero-description">
+                Hidden clues. Encrypted messages. QR checkpoints.
+                Every corner could hold the next piece of the puzzle.
+                Do you have what it takes to solve it?
+            </p>
+
+            <div class="hero-actions">
+                <a href="login.html" class="button button-primary">
+                    Enter the Game <span aria-hidden="true">↗</span>
+                </a>
+
+                <a href="#how-it-works" class="button button-secondary">
+                    Discover CIPHER <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="hero-footnote">
+                <span class="footnote-line"></span>
+                <p>ONE CAMPUS. COUNTLESS SECRETS. ONE WINNER.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Decorative terminal panel -->
+        <div class="hero-visual">
+
+            <div class="terminal-card">
+
+                <div class="terminal-topbar">
+                    <div class="terminal-lights" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="terminal-title">cipher://transmission</span>
+
+                    <span class="terminal-live">
+                        <span class="status-dot"></span>
+                        LIVE
+                    </span>
+                </div>
+
+                <div class="terminal-body">
+
+                    <div class="terminal-meta">
+                        <span>INCOMING TRANSMISSION</span>
+                        <span>ENCRYPTED</span>
+                    </div>
+
+                    <p class="terminal-prompt">
+                        <span class="terminal-symbol">&gt;</span>
+                        INITIALIZING CIPHER PROTOCOL...
+                    </p>
+
+                    <p class="terminal-prompt">
+                        <span class="terminal-symbol">&gt;</span>
+                        SCANNING CAMPUS NETWORK...
+                    </p>
+
+                    <div class="terminal-progress">
+                        <div class="terminal-progress-fill"></div>
+                    </div>
+
+                    <p class="terminal-success">
+                        <span class="success-symbol">[+]</span>
+                        SIGNAL DETECTED
+                    </p>
+
+                    <div class="cipher-message">
+                        <span class="cipher-label">MESSAGE_001</span>
+
+                        <p id="cipherMessage">
+                            The answer is closer than you think.
+                        </p>
+
+                        <span class="cursor" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="terminal-footer">
+                        <span>ORIGIN: UNKNOWN</span>
+                        <span>STATUS: AWAITING PLAYER</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Decorative floating information cards -->
+            <div class="floating-card floating-card-top">
+                <span class="floating-icon">⌘</span>
+
+                <div>
+                    <p class="floating-label">PROTOCOL</p>
+                    <p class="floating-value">CIPHER_001</p>
+                </div>
+            </div>
+
+            <div class="floating-card floating-card-bottom">
+                <span class="floating-icon">⌖</span>
+
+                <div>
+                    <p class="floating-label">NEXT CHECKPOINT</p>
+                    <p class="floating-value">LOCATION UNKNOWN</p>
+                </div>
+
+                <span class="floating-indicator"></span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TICKER ================= -->
+
+    <section class="ticker" aria-label="CIPHER features">
+        <div class="ticker-track">
+            <span>DECODE</span>
+            <span class="ticker-star">✳</span>
+            <span>DISCOVER</span>
+            <span class="ticker-star">✳</span>
+            <span>COMPETE</span>
+            <span class="ticker-star">✳</span>
+            <span>CONQUER</span>
+            <span class="ticker-star">✳</span>
+            <span>DECODE</span>
+            <span class="ticker-star">✳</span>
+            <span>DISCOVER</span>
+            <span class="ticker-star">✳</span>
+            <span>COMPETE</span>
+            <span class="ticker-star">✳</span>
+            <span>CONQUER</span>
+            <span class="ticker-star">✳</span>
+        </div>
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="section container" id="how-it-works">
+
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">YOUR MISSION STARTS HERE</p>
+
+                <h2>
+                    The game is simple.<br>
+                    <span class="text-muted">Solving it isn't.</span>
+                </h2>
+            </div>
+
+            <p class="section-intro">
+                Follow the trail, question everything, and connect the clues.
+                Each solved puzzle brings you closer to the top.
+            </p>
+        </div>
+
+
+        <div class="steps-grid">
+
+            <article class="step-card">
+                <div class="step-number">01</div>
+
+                <div class="step-icon" aria-hidden="true">⌗</div>
+
+                <h3>Find the Signal</h3>
+
+                <p>
+                    Discover official QR checkpoints and digital clues
+                    released as part of a CIPHER challenge.
+                </p>
+
+                <span class="step-tag">SCAN & DISCOVER</span>
+            </article>
+
+
+            <article class="step-card">
+                <div class="step-number">02</div>
+
+                <div class="step-icon" aria-hidden="true">⌘</div>
+
+                <h3>Break the Code</h3>
+
+                <p>
+                    Solve riddles, decode encrypted messages, and
+                    follow the evidence to uncover your next move.
+                </p>
+
+                <span class="step-tag">THINK & DECODE</span>
+            </article>
+
+
+            <article class="step-card">
+                <div class="step-number">03</div>
+
+                <div class="step-icon" aria-hidden="true">♛</div>
+
+                <h3>Claim Your Rank</h3>
+
+                <p>
+                    Earn verified points, compete solo or with a team,
+                    and build your reputation on the leaderboard.
+                </p>
+
+                <span class="step-tag">COMPETE & CONQUER</span>
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CHALLENGES ================= -->
+
+    <section class="section challenges-section" id="challenges">
+
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CHOOSE YOUR BATTLE</p>
+
+                    <h2>
+                        Different hunts.<br>
+                        <span class="text-gradient">One obsession.</span>
+                    </h2>
+                </div>
+
+                <p class="section-intro">
+                    Some challenges test your speed.
+                    Others test how well you think.
+                    The toughest ones demand both.
+                </p>
+            </div>
+
+
+            <div class="challenge-grid">
+
+                <article class="challenge-card challenge-daily">
+
+                    <div class="challenge-card-top">
+                        <span class="challenge-category">01 / DAILY</span>
+                        <span class="challenge-icon">◉</span>
+                    </div>
+
+                    <div class="challenge-art daily-art" aria-hidden="true">
+                        <span class="orbit orbit-one"></span>
+                        <span class="orbit orbit-two"></span>
+                        <span class="orbit-core">C</span>
+                    </div>
+
+                    <div class="challenge-card-content">
+                        <p class="challenge-kicker">THE DAILY SIGNAL</p>
+
+                        <h3>One clue. One shot.</h3>
+
+                        <p>
+                            Quick puzzles and short missions for
+                            players who want to keep their minds sharp.
+                        </p>
+
+                        <a href="login.html" class="text-link">
+                            Explore challenge <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+
+                </article>
+
+
+                <article class="challenge-card challenge-weekly">
+
+                    <div class="challenge-card-top">
+                        <span class="challenge-category">02 / WEEKLY</span>
+                        <span class="challenge-icon">⌬</span>
+                    </div>
+
+                    <div class="challenge-art weekly-art" aria-hidden="true">
+                        <div class="puzzle-shape puzzle-one"></div>
+                        <div class="puzzle-shape puzzle-two"></div>
+                        <div class="puzzle-shape puzzle-three"></div>
+                        <span class="weekly-cross">+</span>
+                    </div>
+
+                    <div class="challenge-card-content">
+                        <p class="challenge-kicker">THE WEEKLY HUNT</p>
+
+                        <h3>Follow the evidence.</h3>
+
+                        <p>
+                            Connect clues across checkpoints and
+                            uncover the bigger picture before your rivals.
+                        </p>
+
+                        <a href="login.html" class="text-link">
+                            Explore challenge <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+
+                </article>
+
+
+                <article class="challenge-card challenge-major">
+
+                    <div class="challenge-card-top">
+                        <span class="challenge-category">03 / MAJOR</span>
+                        <span class="challenge-icon">✳</span>
+                    </div>
+
+                    <div class="challenge-art major-art" aria-hidden="true">
+                        <div class="major-ring ring-one"></div>
+                        <div class="major-ring ring-two"></div>
+                        <div class="major-core">?</div>
+                    </div>
+
+                    <div class="challenge-card-content">
+                        <p class="challenge-kicker">THE GRAND HUNT</p>
+
+                        <h3>Nothing is accidental.</h3>
+
+                        <p>
+                            Face the major campus mystery where
+                            teamwork, strategy, and observation matter.
+                        </p>
+
+                        <a href="login.html" class="text-link">
+                            Explore challenge <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LEADERBOARD ================= -->
+
+    <section class="section container" id="leaderboard">
+
+        <div class="leaderboard-panel">
+
+            <div class="leaderboard-copy">
+                <p class="eyebrow">YOUR NAME COULD BE NEXT</p>
+
+                <h2>
+                    Every point<br>
+                    <span class="text-gradient">tells a story.</span>
+                </h2>
+
+                <p>
+                    Rise through the rankings, represent your team,
+                    and earn your place in CIPHER history.
+                </p>
+
+                <a href="login.html" class="button button-primary">
+                    View Rankings <span aria-hidden="true">↗</span>
+                </a>
+
+                <div class="leaderboard-note">
+                    <span class="status-dot"></span>
+                    Rankings will appear once official challenges begin.
+                </div>
+            </div>
+
+
+            <div class="leaderboard-preview">
+
+                <div class="leaderboard-header">
+                    <div>
+                        <p class="leaderboard-overline">CIPHER RANKINGS</p>
+                        <h3>Hall of Champions</h3>
+                    </div>
+
+                    <span class="season-badge">PREVIEW</span>
+                </div>
+
+
+                <div class="ranking-row">
+                    <span class="rank-number">01</span>
+
+                    <span class="rank-avatar rank-avatar-one">?</span>
+
+                    <div class="rank-player">
+                        <strong>Unknown Player</strong>
+                        <span>Identity Classified</span>
+                    </div>
+
+                    <span class="rank-score">---</span>
+                </div>
+
+
+                <div class="ranking-row">
+                    <span class="rank-number">02</span>
+
+                    <span class="rank-avatar rank-avatar-two">?</span>
+
+                    <div class="rank-player">
+                        <strong>Unknown Player</strong>
+                        <span>Identity Classified</span>
+                    </div>
+
+                    <span class="rank-score">---</span>
+                </div>
+
+
+                <div class="ranking-row">
+                    <span class="rank-number">03</span>
+
+                    <span class="rank-avatar rank-avatar-three">?</span>
+
+                    <div class="rank-player">
+                        <strong>Unknown Player</strong>
+                        <span>Identity Classified</span>
+                    </div>
+
+                    <span class="rank-score">---</span>
+                </div>
+
+
+                <div class="leaderboard-bottom">
+                    <span>THE NEXT CHAMPION COULD BE YOU.</span>
+                    <span aria-hidden="true">↗</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CALL TO ACTION ================= -->
+
+    <section class="final-cta container" id="access">
+
+        <div class="cta-grid-overlay" aria-hidden="true"></div>
+
+        <div class="cta-content">
+            <p class="eyebrow">THE SIGNAL IS OUT THERE</p>
+
+            <h2>
+                The campus is waiting.<br>
+                <span class="text-gradient">Are you ready?</span>
+            </h2>
+
+            <p>
+                Your first clue could be closer than you think.
+                Your story starts with a single decision.
+            </p>
+
+            <a
+                class="button button-primary"
+                href="login.html"
+            >
+                Initialize CIPHER <span aria-hidden="true">↗</span>
+            </a>
+
+            <p class="cta-footnote">
+                CREATE AN ACCOUNT OR CONTINUE YOUR INVESTIGATION
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="site-footer">
+
+    <div class="container footer-main">
+
+        <a href="#home" class="brand footer-brand">
+            <span class="brand-icon" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <span class="brand-name">CIPHER<span>.</span></span>
+        </a>
+
+        <p class="footer-tagline">Crack the Campus.</p>
+
+        <div class="footer-links">
+            <a href="#how-it-works">How It Works</a>
+            <a href="#challenges">Challenges</a>
+            <a href="#leaderboard">Leaderboard</a>
+        </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+        <p>© <span id="currentYear"></span> CIPHER. All rights reserved.</p>
+
+        <p>BUILT FOR THE CURIOUS.</p>
+
+        <a href="#home">BACK TO TOP ↑</a>
+    </div>
+
+</footer>
+```
+
+</body>
+</html>

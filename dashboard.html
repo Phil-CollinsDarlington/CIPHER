@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Your personal CIPHER player dashboard."
+    >
+
+    <title>Player Dashboard | CIPHER</title>
+
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+
+</head>
+
+<body>
+
+    <!-- ======================================================
+         SIDEBAR
+         ====================================================== -->
+
+    <aside class="sidebar">
+
+        <a class="brand" href="index.html">
+
+            <span class="brand-mark" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <span>CIPHER</span>
+
+        </a>
+
+
+        <p class="sidebar-label">PLAYER MENU</p>
+
+
+        <nav class="sidebar-nav" aria-label="Player navigation">
+
+            <a class="nav-link active" href="dashboard.html">
+                <span aria-hidden="true">▦</span>
+                Dashboard
+            </a>
+
+            <a class="nav-link" href="index.html#challenges">
+                <span aria-hidden="true">⌕</span>
+                Challenges
+            </a>
+
+            <a class="nav-link" href="index.html#leaderboard">
+                <span aria-hidden="true">♜</span>
+                Leaderboards
+            </a>
+
+            <!-- These destinations will be implemented later. -->
+            <a class="nav-link" href="#" data-coming-soon="Teams">
+                <span aria-hidden="true">◈</span>
+                My Teams
+            </a>
+
+            <a class="nav-link" href="#" data-coming-soon="Achievements">
+                <span aria-hidden="true">✧</span>
+                Achievements
+            </a>
+
+            <a
+                class="nav-link"
+                href="admin.html"
+                title="Open system tools"
+                aria-label="Open system tools"
+            >
+                <span aria-hidden="true">◌</span>
+                System
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <label class="theme-picker" for="dashboard-theme">
+                <span>THEME</span>
+                <select id="dashboard-theme">
+                    <option value="cipher">CIPHER Green</option>
+                    <option value="ocean">Ocean Blue</option>
+                    <option value="ember">Ember Orange</option>
+                    <option value="violet">Signal Violet</option>
+                </select>
+            </label>
+
+            <div class="sidebar-status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </div>
+
+            <a class="nav-link" href="index.html">
+                Return to homepage
+            </a>
+
+            <button id="logout-button" class="logout-button">
+                Log out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ======================================================
+         MAIN DASHBOARD
+         ====================================================== -->
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <div>
+                <span class="eyebrow">PLAYER COMMAND CENTRE</span>
+                <h1>Dashboard</h1>
+            </div>
+
+            <a class="account-chip" href="profile.html" aria-label="Open your profile">
+
+                <div class="avatar" id="player-avatar">
+                    ?
+                </div>
+
+                <div class="account-details">
+                    <strong id="player-name">Loading player...</strong>
+                    <span id="player-email">Checking account...</span>
+                </div>
+
+            </a>
+
+        </header>
+
+
+        <!-- General status message. -->
+        <div
+            id="dashboard-message"
+            class="dashboard-message"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- ==================================================
+             WELCOME PANEL
+             ================================================== -->
+
+        <section class="welcome-panel">
+
+            <div class="welcome-copy">
+
+                <span class="eyebrow">YOUR NEXT MOVE</span>
+
+                <h2>
+                    Welcome back,
+                    <span id="welcome-name">Player</span>.
+                </h2>
+
+                <p>
+                    Your next discovery is waiting.
+                    Explore available challenges and prepare
+                    to crack the campus.
+                </p>
+
+                <a class="primary-button" href="index.html#challenges">
+                    Explore Challenges
+                </a>
+
+            </div>
+
+
+            <div class="welcome-decoration" aria-hidden="true">
+
+                <div class="target-ring ring-one"></div>
+                <div class="target-ring ring-two"></div>
+                <div class="target-ring ring-three"></div>
+
+                <div class="target-core">C</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             STATISTICS
+             ==================================================
+
+             These values are placeholders until the scoring
+             engine and leaderboard queries are implemented.
+             Do not treat them as actual player scores.
+             ================================================== -->
+
+        <section class="stats-grid" aria-label="Player statistics">
+
+            <article class="stat-card">
+
+                <span class="stat-label">TOTAL POINTS</span>
+
+                <strong class="stat-value" id="total-points">--</strong>
+
+                <p>Scoring integration coming next</p>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span class="stat-label">CHALLENGES SOLVED</span>
+
+                <strong class="stat-value" id="challenges-solved">--</strong>
+
+                <p>Verified completions will appear here</p>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span class="stat-label">ACHIEVEMENTS</span>
+
+                <strong class="stat-value" id="achievement-count">--</strong>
+
+                <p>Your earned badges will appear here</p>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span class="stat-label">TEAM STATUS</span>
+
+                <strong class="stat-value stat-status" id="team-status">
+                    Not connected
+                </strong>
+
+                <p>Team integration coming next</p>
+
+            </article>
+
+        </section>
+
+
+        <!-- ==================================================
+             CHALLENGES
+             ================================================== -->
+
+        <section class="content-section" id="dashboard-challenges">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">MISSION BOARD</span>
+                    <h2>Available challenges</h2>
+                </div>
+
+                <a href="index.html#challenges">Explore all</a>
+
+            </div>
+
+
+            <div class="empty-state">
+
+                <div class="empty-symbol" aria-hidden="true">⌁</div>
+
+                <h3>Your next challenge awaits.</h3>
+
+                <p>
+                    Challenge listings will appear here once the
+                    challenge-management system is connected.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             ACCOUNT INFORMATION
+             ================================================== -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">PLAYER PROFILE</span>
+                    <h2>Account information</h2>
+                </div>
+
+                <a href="profile.html">Edit profile</a>
+
+            </div>
+
+
+            <div class="profile-panel">
+
+                <div class="profile-row">
+                    <span>Display name</span>
+                    <strong id="profile-display-name">Loading...</strong>
+                </div>
+
+                <div class="profile-row">
+                    <span>Email address</span>
+                    <strong id="profile-email">Loading...</strong>
+                </div>
+
+                <div class="profile-row">
+                    <span>Email verification</span>
+                    <strong id="profile-verification">Checking...</strong>
+                </div>
+
+                <div class="profile-row">
+                    <span>Account created</span>
+                    <strong id="profile-created">Loading...</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             FOOTER
+             ================================================== -->
+
+        <footer class="dashboard-footer">
+
+            <span>CIPHER // CRACK THE CAMPUS</span>
+
+            <span>PLAYER COMMAND CENTRE</span>
+
+        </footer>
+
+    </main>
+
+
+    <script type="module" src="assets/js/dashboard.js"></script>
+    <script type="module" src="assets/js/theme.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Character encoding supports standard international text. -->
+    <meta charset="UTF-8">
+
+    <!-- Makes the page responsive on phones and tablets. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Description used by browsers and search engines. -->
+    <meta
+        name="description"
+        content="Create your CIPHER account and prepare to crack the campus."
+    >
+
+    <title>Create Account | CIPHER</title>
+
+    <!-- Authentication page styles. -->
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+</head>
+
+<body>
+
+    <!-- ======================================================
+         PAGE HEADER
+         ====================================================== -->
+
+    <header class="auth-header">
+
+        <!-- Clicking the logo returns visitors to the homepage. -->
+        <a class="brand" href="index.html" aria-label="CIPHER homepage">
+
+            <span class="brand-mark" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <span>CIPHER</span>
+
+        </a>
+
+        <a class="header-link" href="login.html">
+            Already registered? <strong>Log in</strong>
+        </a>
+
+    </header>
+
+
+    <!-- ======================================================
+         MAIN REGISTRATION AREA
+         ====================================================== -->
+
+    <main class="auth-layout">
+
+        <!-- Decorative panel shown alongside the form. -->
+        <section class="auth-visual">
+
+            <span class="eyebrow">
+                YOUR NEXT MOVE STARTS HERE
+            </span>
+
+            <h1>
+                Every clue<br>
+                leads somewhere.
+            </h1>
+
+            <p>
+                Enter the world of CIPHER. Decode riddles, discover
+                checkpoints, challenge your friends, and compete
+                to crack the campus.
+            </p>
+
+            <div class="visual-terminal">
+
+                <div class="terminal-heading">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span>PLAYER_INIT</span>
+                </div>
+
+                <p>&gt; Initializing player profile...</p>
+                <p>&gt; Preparing the next challenge...</p>
+                <p class="terminal-success">
+                    &gt; Awaiting your first move.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Registration form. -->
+        <section class="auth-card">
+
+            <div class="card-heading">
+
+                <span class="eyebrow">NEW PLAYER</span>
+
+                <h2>Create your account</h2>
+
+                <p>
+                    Your campus adventure starts with one account.
+                </p>
+
+            </div>
+
+
+            <!-- Google registration button. -->
+            <button
+                type="button"
+                id="google-register"
+                class="google-button"
+            >
+                <span aria-hidden="true">G</span>
+                Continue with Google
+            </button>
+
+
+            <div class="form-divider">
+                <span>OR REGISTER WITH EMAIL</span>
+            </div>
+
+
+            <!--
+                JavaScript handles this form.
+
+                Do not add a normal action URL because Supabase
+                will handle account creation asynchronously.
+            -->
+            <form id="register-form">
+
+                <div class="form-group">
+
+                    <label for="display-name">
+                        Display name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="display-name"
+                        name="display-name"
+                        placeholder="e.g. NeonFox"
+                        minlength="2"
+                        maxlength="30"
+                        autocomplete="nickname"
+                        required
+                    >
+
+                    <small>
+                        Choose the name other players will see.
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="register-email">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="register-email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="register-password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="register-password"
+                        name="password"
+                        placeholder="At least 10 characters"
+                        minlength="10"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <small>
+                        Use a strong password that you don't use elsewhere.
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirm-password">
+                        Confirm password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        name="confirm-password"
+                        placeholder="Enter your password again"
+                        minlength="10"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <label class="checkbox-row">
+
+                    <input
+                        type="checkbox"
+                        id="accept-terms"
+                        required
+                    >
+
+                    <span>
+                        I agree to follow CIPHER's
+                        <a href="index.html#how-it-works">
+                            participation guidelines
+                        </a>.
+                    </span>
+
+                </label>
+
+
+                <!--
+                    JavaScript updates this area with errors,
+                    progress messages, and email-verification
+                    instructions.
+                -->
+                <div
+                    id="register-message"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    id="register-submit"
+                    class="primary-button"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="auth-footer">
+                Already have an account?
+                <a href="login.html">Log in</a>
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- Authentication logic is loaded as an ES module. -->
+    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/theme.js"></script>
+
+</body>
+
+</html>

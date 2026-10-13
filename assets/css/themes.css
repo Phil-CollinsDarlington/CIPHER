@@ -1,0 +1,141 @@
+/* Shared player-selected color themes. */
+
+body[data-theme="ocean"] {
+    --bg: #071016;
+    --bg-soft: #0b1820;
+    --surface: #0e1b24;
+    --surface-raised: #142631;
+    --panel: #0e1b24;
+    --panel-light: #142631;
+    --green: #5edbff;
+    --green-bright: #8be7ff;
+    --green-dark: #2ca9cf;
+    --white: #edfaff;
+    --silver: #b0cbd5;
+    --muted: #8eabb7;
+    --border: rgba(94, 219, 255, 0.16);
+    --green-border: rgba(94, 219, 255, 0.24);
+    --green-glow: 0 0 35px rgba(94, 219, 255, 0.1);
+    --cipher-bg: #071016;
+    --cipher-panel: #0e1b24;
+    --cipher-panel-light: #142631;
+    --cipher-green: #5edbff;
+    --cipher-green-dark: #2ca9cf;
+    --cipher-text: #edfaff;
+    --cipher-muted: #8eabb7;
+    --cipher-border: rgba(94, 219, 255, 0.17);
+    --cipher-success: #5edbff;
+    --admin-bg: #071016;
+    --admin-sidebar: #0e1b24;
+    --admin-panel: #142631;
+    --admin-panel-hover: #1b3441;
+    --admin-border: #245060;
+    --admin-text: #edfaff;
+    --admin-muted: #8eabb7;
+    --admin-green: #5edbff;
+    --admin-green-dark: #163d4b;
+}
+
+body[data-theme="ember"] {
+    --bg: #120b08;
+    --bg-soft: #1a0f0b;
+    --surface: #21140f;
+    --surface-raised: #2b1b14;
+    --panel: #21140f;
+    --panel-light: #2b1b14;
+    --green: #ffad5c;
+    --green-bright: #ffc17d;
+    --green-dark: #d9792e;
+    --white: #fff5ed;
+    --silver: #d1b3a1;
+    --muted: #b9927e;
+    --border: rgba(255, 173, 92, 0.16);
+    --green-border: rgba(255, 173, 92, 0.24);
+    --green-glow: 0 0 35px rgba(255, 173, 92, 0.1);
+    --cipher-bg: #120b08;
+    --cipher-panel: #21140f;
+    --cipher-panel-light: #2b1b14;
+    --cipher-green: #ffad5c;
+    --cipher-green-dark: #d9792e;
+    --cipher-text: #fff5ed;
+    --cipher-muted: #b9927e;
+    --cipher-border: rgba(255, 173, 92, 0.17);
+    --cipher-success: #ffad5c;
+    --admin-bg: #120b08;
+    --admin-sidebar: #21140f;
+    --admin-panel: #2b1b14;
+    --admin-panel-hover: #3a2419;
+    --admin-border: #63402a;
+    --admin-text: #fff5ed;
+    --admin-muted: #b9927e;
+    --admin-green: #ffad5c;
+    --admin-green-dark: #4a2a16;
+}
+
+body[data-theme="violet"] {
+    --bg: #0d0915;
+    --bg-soft: #140d20;
+    --surface: #181126;
+    --surface-raised: #211737;
+    --panel: #181126;
+    --panel-light: #211737;
+    --green: #c694ff;
+    --green-bright: #d8b6ff;
+    --green-dark: #9258d5;
+    --white: #f8f1ff;
+    --silver: #c3b2d3;
+    --muted: #a895b8;
+    --border: rgba(198, 148, 255, 0.16);
+    --green-border: rgba(198, 148, 255, 0.24);
+    --green-glow: 0 0 35px rgba(198, 148, 255, 0.1);
+    --cipher-bg: #0d0915;
+    --cipher-panel: #181126;
+    --cipher-panel-light: #211737;
+    --cipher-green: #c694ff;
+    --cipher-green-dark: #9258d5;
+    --cipher-text: #f8f1ff;
+    --cipher-muted: #a895b8;
+    --cipher-border: rgba(198, 148, 255, 0.17);
+    --cipher-success: #c694ff;
+    --admin-bg: #0d0915;
+    --admin-sidebar: #181126;
+    --admin-panel: #211737;
+    --admin-panel-hover: #2e2050;
+    --admin-border: #4b3670;
+    --admin-text: #f8f1ff;
+    --admin-muted: #a895b8;
+    --admin-green: #c694ff;
+    --admin-green-dark: #342052;
+}
+
+body[data-theme="ocean"] .profile-card,
+body[data-theme="ember"] .profile-card,
+body[data-theme="violet"] .profile-card {
+    background: var(--cipher-panel);
+    border-color: var(--cipher-border);
+}
+
+body[data-theme="ocean"] .profile-form input,
+body[data-theme="ember"] .profile-form input,
+body[data-theme="violet"] .profile-form input {
+    background: var(--cipher-bg);
+    border-color: var(--cipher-border);
+}
+
+body[data-theme="ocean"] .profile-form button,
+body[data-theme="ember"] .profile-form button,
+body[data-theme="violet"] .profile-form button {
+    background: var(--cipher-green);
+    color: var(--cipher-bg);
+}
+
+body[data-theme="ocean"] .profile-actions a,
+body[data-theme="ocean"] .profile-actions button,
+body[data-theme="ember"] .profile-actions a,
+body[data-theme="ember"] .profile-actions button,
+body[data-theme="violet"] .profile-actions a,
+body[data-theme="violet"] .profile-actions button {
+    border-color: var(--cipher-border);
+    background: transparent;
+    color: var(--cipher-text);
+}

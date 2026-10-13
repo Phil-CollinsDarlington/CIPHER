@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CIPHER administrator dashboard"
+    >
+
+    <title>CIPHER | Admin Control Room</title>
+
+    <!-- Admin dashboard styling -->
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         ADMIN APPLICATION
+         The interface is hidden until administrator access
+         has been checked by admin.js.
+    ====================================================== -->
+
+    <div id="admin-app" class="admin-app" hidden>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <a class="brand" href="index.html">
+                <span class="brand-symbol">C</span>
+
+                <span>
+                    <strong>CIPHER</strong>
+                    <small>ADMIN CONTROL</small>
+                </span>
+            </a>
+
+            <div class="sidebar-label">
+                WORKSPACE
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="#overview"
+                    class="nav-link active"
+                    data-section="overview"
+                >
+                    <span>▦</span>
+                    Overview
+                </a>
+
+                <a
+                    href="#challenges"
+                    class="nav-link"
+                    data-section="challenges"
+                >
+                    <span>⌘</span>
+                    Challenges
+                </a>
+
+                <a
+                    href="#create-challenge"
+                    class="nav-link"
+                    data-section="create-challenge"
+                >
+                    <span>＋</span>
+                    Create challenge
+                </a>
+
+                <a
+                    href="#checkpoints"
+                    class="nav-link"
+                    data-section="checkpoints"
+                >
+                    <span>⌁</span>
+                    Checkpoints
+                </a>
+
+                <a
+                    href="#submissions"
+                    class="nav-link"
+                    data-section="submissions"
+                >
+                    <span>◈</span>
+                    Submissions
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="admin-identity">
+
+                    <div class="admin-avatar" id="admin-avatar">
+                        A
+                    </div>
+
+                    <div class="admin-identity-text">
+                        <strong id="admin-name">
+                            Administrator
+                        </strong>
+
+                        <small>System administrator</small>
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="logout-button"
+                    class="logout-button"
+                >
+                    ↗ Log out
+                </button>
+
+                <a href="dashboard.html" class="back-link">
+                    ← Return to player dashboard
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <div>
+                    <span class="eyebrow">
+                        CIPHER / ADMINISTRATION
+                    </span>
+
+                    <h1>Control room</h1>
+                </div>
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <span>Admin session verified</span>
+                </div>
+
+            </header>
+
+
+            <!-- STATUS MESSAGE -->
+            <div
+                id="admin-message"
+                class="admin-message"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- OVERVIEW SECTION -->
+            <section
+                id="overview"
+                class="admin-section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            COMMAND CENTRE
+                        </span>
+
+                        <h2>Mission overview</h2>
+
+                        <p>
+                            Monitor your challenges and prepare
+                            the next campus mission.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="button button-primary"
+                        data-open-section="create-challenge"
+                    >
+                        + New challenge
+                    </button>
+
+                </div>
+
+
+                <!-- SUMMARY CARDS -->
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+
+                        <span class="stat-label">
+                            Total challenges
+                        </span>
+
+                        <strong
+                            id="stat-total"
+                            class="stat-value"
+                        >
+                            —
+                        </strong>
+
+                        <span class="stat-note">
+                            All recorded missions
+                        </span>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <span class="stat-label">
+                            Published
+                        </span>
+
+                        <strong
+                            id="stat-published"
+                            class="stat-value"
+                        >
+                            —
+                        </strong>
+
+                        <span class="stat-note">
+                            Available for release
+                        </span>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <span class="stat-label">
+                            Active
+                        </span>
+
+                        <strong
+                            id="stat-active"
+                            class="stat-value"
+                        >
+                            —
+                        </strong>
+
+                        <span class="stat-note">
+                            Currently running
+                        </span>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <span class="stat-label">
+                            Drafts
+                        </span>
+
+                        <strong
+                            id="stat-drafts"
+                            class="stat-value"
+                        >
+                            —
+                        </strong>
+
+                        <span class="stat-note">
+                            Not yet published
+                        </span>
+
+                    </article>
+
+                </div>
+
+
+                <!-- RECENT CHALLENGES -->
+                <div class="panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <h3>Challenge management</h3>
+
+                            <p>
+                                Review missions stored in CIPHER.
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="refresh-challenges"
+                        >
+                            ↻ Refresh
+                        </button>
+
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table class="challenge-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Challenge</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Maximum points</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="challenge-table-body">
+
+                                <tr>
+                                    <td
+                                        colspan="5"
+                                        class="table-placeholder"
+                                    >
+                                        Challenge records will appear
+                                        after the database is connected.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHALLENGES SECTION -->
+            <section
+                id="challenges"
+                class="admin-section"
+                hidden
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            MISSION MANAGEMENT
+                        </span>
+
+                        <h2>Challenges</h2>
+
+                        <p>
+                            Review and manage the missions
+                            you create.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="panel">
+
+                    <h3>Challenge library</h3>
+
+                    <p>
+                        Your complete challenge library will
+                        appear here once database access
+                        has been verified.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- CREATE CHALLENGE SECTION -->
+            <section
+                id="create-challenge"
+                class="admin-section"
+                hidden
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            MISSION DESIGN
+                        </span>
+
+                        <h2>Prepare a challenge</h2>
+
+                        <p>
+                            Define the mission before adding
+                            its clues and checkpoints.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="challenge-form"
+                    class="panel challenge-form"
+                >
+
+                    <div class="form-grid">
+
+                        <div class="form-field full-width">
+
+                            <label for="challenge-title">
+                                Challenge title
+                            </label>
+
+                            <input
+                                id="challenge-title"
+                                name="title"
+                                type="text"
+                                maxlength="120"
+                                placeholder="e.g. The Lost Cipher"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-field full-width">
+
+                            <label for="challenge-description">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="challenge-description"
+                                name="description"
+                                rows="4"
+                                placeholder="Describe the mission and its objective."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="challenge-type">
+                                Challenge category
+                            </label>
+
+                            <select
+                                id="challenge-type"
+                                name="challenge_type"
+                                required
+                            >
+                                <option value="daily">
+                                    Daily
+                                </option>
+
+                                <option value="weekly">
+                                    Weekly
+                                </option>
+
+                                <option value="major">
+                                    Major
+                                </option>
+
+                                <option value="seasonal">
+                                    Seasonal
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="challenge-mode">
+                                Allowed play modes
+                            </label>
+
+                            <select
+                                id="challenge-mode"
+                                name="allowed_modes"
+                                required
+                            >
+                                <option value="solo">
+                                    Solo
+                                </option>
+
+                                <option value="team">
+                                    Team
+                                </option>
+
+                                <option value="both">
+                                    Solo and team
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="challenge-start">
+                                Start date and time
+                            </label>
+
+                            <input
+                                id="challenge-start"
+                                name="starts_at"
+                                type="datetime-local"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="challenge-end">
+                                End date and time
+                            </label>
+
+                            <input
+                                id="challenge-end"
+                                name="ends_at"
+                                type="datetime-local"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="challenge-points">
+                                Maximum points
+                            </label>
+
+                            <input
+                                id="challenge-points"
+                                name="max_points"
+                                type="number"
+                                min="1"
+                                max="100000"
+                                value="100"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-note">
+                        <strong>Preparation mode</strong>
+
+                        <p>
+                            Challenges are saved as drafts first.
+                            Add checkpoints and answers before publishing
+                            a mission to players.
+                        </p>
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="reset"
+                            class="button button-secondary"
+                        >
+                            Clear form
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="button button-primary"
+                        >
+                            Save preparation
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- CHECKPOINTS SECTION -->
+<!-- =====================================================
+     CIPHER CHECKPOINT WORKSHOP
+
+     Used by administrators to create online riddles
+     and physical QR checkpoints.
+
+     Checkpoints remain unpublished until deliberately
+     prepared for a mission.
+     ===================================================== -->
+
+<section
+    id="checkpoints"
+    class="admin-section"
+    hidden
+>
+
+    <!-- SECTION HEADER -->
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">
+                CLUE MANAGEMENT
+            </span>
+
+            <h2>Checkpoint Workshop</h2>
+
+            <p>
+                Design the clues that players must solve
+                to crack a CIPHER mission.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- CHECKPOINT CREATION FORM -->
+    <form
+        id="checkpoint-form"
+        class="panel challenge-form"
+    >
+
+        <h3>Create a checkpoint</h3>
+
+        <p>
+            Choose a mission, write the clue, and define
+            the answer required to unlock the next stage.
+        </p>
+
+
+        <div class="form-grid">
+
+            <!-- SELECT THE PARENT CHALLENGE -->
+            <div class="form-field full-width">
+
+                <label for="checkpoint-challenge">
+                    Mission
+                </label>
+
+                <select
+                    id="checkpoint-challenge"
+                    name="challenge_id"
+                    required
+                >
+
+                    <option value="">
+                        Loading your missions...
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CHECKPOINT TITLE -->
+            <div class="form-field full-width">
+
+                <label for="checkpoint-title">
+                    Checkpoint title
+                </label>
+
+                <input
+                    id="checkpoint-title"
+                    name="title"
+                    type="text"
+                    maxlength="120"
+                    placeholder="e.g. The First Transmission"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CHECKPOINT TYPE -->
+            <div class="form-field">
+
+                <label for="checkpoint-type">
+                    Checkpoint type
+                </label>
+
+                <select
+                    id="checkpoint-type"
+                    name="checkpoint_type"
+                    required
+                >
+
+                    <option value="online_riddle">
+                        Online riddle
+                    </option>
+
+                    <option value="qr_checkpoint">
+                        Physical QR checkpoint
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ORDER IN THE MISSION -->
+            <div class="form-field">
+
+                <label for="checkpoint-sequence">
+                    Checkpoint order
+                </label>
+
+                <input
+                    id="checkpoint-sequence"
+                    name="sequence_number"
+                    type="number"
+                    min="1"
+                    step="1"
+                    value="1"
+                    required
+                >
+
+                <small>
+                    Example: 1 for the first clue,
+                    2 for the second clue.
+                </small>
+
+            </div>
+
+
+            <!-- POINTS -->
+            <div class="form-field">
+
+                <label for="checkpoint-points">
+                    Points awarded
+                </label>
+
+                <input
+                    id="checkpoint-points"
+                    name="points"
+                    type="number"
+                    min="1"
+                    step="1"
+                    value="20"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CLUE TEXT -->
+            <div class="form-field full-width">
+
+                <label for="checkpoint-clue">
+                    Clue or instructions
+                </label>
+
+                <textarea
+                    id="checkpoint-clue"
+                    name="clue_text"
+                    rows="6"
+                    placeholder="Write the clue players must solve..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- ACCEPTED ANSWER -->
+<!-- =====================================================
+     ACCEPTED ANSWERS
+
+     Enter one accepted answer per line.
+     Answers are checked without regard to capitalization
+     or unnecessary spaces at the beginning or end.
+====================================================== -->
+
+<!-- =====================================================
+     ACCEPTED ANSWERS
+     Enter one acceptable answer per line.
+     Example:
+     echo
+     an echo
+     the echo
+     ===================================================== -->
+<div class="form-group">
+    <label for="checkpoint-answer">
+        Accepted Answers
+    </label>
+
+    <textarea
+        id="checkpoint-answer"
+        name="accepted_answers"
+        rows="5"
+        placeholder="echo&#10;an echo&#10;the echo"
+        required
+    ></textarea>
+
+    <small>
+        Enter one accepted answer per line.
+        Capitalization and surrounding spaces do not matter.
+    </small>
+</div>
+
+        </div>
+
+
+        <!-- PREPARATION NOTICE -->
+        <div class="form-note">
+
+            <strong>Preparation mode</strong>
+
+            <p>
+                New checkpoints are saved as unpublished.
+                Players will not be able to access them
+                through the intended gameplay interface
+                until the mission is properly configured.
+            </p>
+
+        </div>
+
+
+        <!-- FORM BUTTONS -->
+        <div class="form-actions">
+
+            <button
+                type="reset"
+                class="button button-secondary"
+            >
+                Clear form
+            </button>
+
+            <button
+                id="save-checkpoint-button"
+                type="submit"
+                class="button button-primary"
+            >
+                Save checkpoint
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- EXISTING CHECKPOINTS -->
+    <div class="panel">
+
+        <h3>Checkpoint library</h3>
+
+        <p>
+            Review the checkpoints prepared for your
+            missions.
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Checkpoint</th>
+                        <th>Mission</th>
+                        <th>Type</th>
+                        <th>Order</th>
+                        <th>Points</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="checkpoint-table-body">
+
+                    <tr>
+                        <td colspan="6">
+                            Checkpoints will appear here.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            CLUE MANAGEMENT
+                        </span>
+
+                        <h2>Checkpoints</h2>
+
+                        <p>
+                            Prepare online riddles and
+                            physical QR checkpoints.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="panel">
+
+                    <div class="feature-symbol">⌁</div>
+
+                    <h3>Clue workshop</h3>
+
+                    <p>
+                        We'll connect checkpoint creation after
+                        the challenge-management foundation
+                        has been tested.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- SUBMISSIONS SECTION -->
+            <section
+                id="submissions"
+                class="admin-section"
+                hidden
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            PLAYER ACTIVITY
+                        </span>
+
+                        <h2>Submissions</h2>
+
+                        <p>
+                            Review player attempts and results.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="panel">
+
+                    <div class="feature-symbol">◈</div>
+
+                    <h3>Submission monitoring</h3>
+
+                    <p>
+                        Submission records will appear here
+                        after secure answer checking has
+                        been implemented.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="admin-footer">
+
+                <span>CIPHER · Crack the Campus</span>
+
+                <span>
+                    Administrator workspace
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!--
+        Fallback shown while the app checks the administrator
+        account. No admin controls are displayed at this stage.
+    -->
+    <div id="access-screen" class="access-screen">
+
+        <div class="access-card">
+
+            <div class="access-symbol">C</div>
+
+            <span class="eyebrow">
+                CIPHER SECURITY
+            </span>
+
+            <h1>Verifying access</h1>
+
+            <p id="access-message">
+                Checking your administrator session...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript module -->
+    <script type="module" src="assets/js/admin.js"></script>
+    <script type="module" src="assets/js/theme.js"></script>
+
+</body>
+</html>
