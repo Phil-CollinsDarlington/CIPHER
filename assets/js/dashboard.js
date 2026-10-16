@@ -361,9 +361,8 @@ if (logoutButton) {
 // 5. PLACEHOLDER NAVIGATION
 // ============================================================
 
-// Team management and achievements will be built later.
-// Until then, prevent placeholder links from jumping to the
-// top of the page and explain that the feature is not ready.
+// Keep only features that are still marked as coming soon from
+// intercepting their links.
 
 document
     .querySelectorAll("[data-coming-soon]")

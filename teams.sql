@@ -1,6 +1,13 @@
 -- CIPHER teams
 -- Run this migration in the Supabase SQL editor.
 
+-- WARNING: This resets all team data, memberships, policies, and functions.
+-- Run this only when you are ready to remove the existing team setup.
+drop function if exists public.create_cipher_team(text);
+drop function if exists public.join_cipher_team(text);
+drop table if exists public.team_members cascade;
+drop table if exists public.teams cascade;
+
 create table if not exists public.teams (
     id uuid primary key default gen_random_uuid(),
     name text not null check (char_length(trim(name)) between 2 and 80),
@@ -60,11 +67,15 @@ begin
     end if;
 
     loop
-        new_code := upper(substr(encode(gen_random_bytes(6), 'hex'), 1, 8));
+        new_code := upper(substr(gen_random_uuid()::text, 1, 8));
         exit when not exists (
             select 1 from public.teams where join_code = new_code
         );
     end loop;
+
+    if char_length(trim(team_name)) not between 2 and 80 then
+        raise exception 'Team name must contain 2 to 80 characters';
+    end if;
 
     insert into public.teams (name, join_code, created_by)
     values (trim(team_name), new_code, auth.uid())

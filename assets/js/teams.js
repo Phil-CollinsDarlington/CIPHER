@@ -11,6 +11,21 @@ function showMessage(message, type = "success") {
     messageElement.className = `dashboard-message visible ${type}`;
 }
 
+function getTeamErrorMessage(error, fallback) {
+    const message = String(error?.message || "").trim();
+
+    if (message.includes("duplicate key")) {
+        return "You are already a member of this team.";
+    }
+
+    if (message.includes("not authenticated") ||
+        message.includes("must be signed in")) {
+        return "Your session has expired. Please log in again.";
+    }
+
+    return message || fallback;
+}
+
 async function requireUser() {
     const { data, error } = await supabase.auth.getUser();
 
@@ -69,12 +84,19 @@ createForm.addEventListener("submit", async (event) => {
 
     if (error) {
         console.error("Team creation failed:", error);
-        showMessage("Team creation failed. Check your Supabase team setup.", "error");
+        showMessage(
+            getTeamErrorMessage(
+                error,
+                "Team creation failed. Run teams.sql in Supabase first."
+            ),
+            "error"
+        );
         return;
     }
 
     createForm.reset();
-    showMessage(`Team created. Your join code is ${data.join_code}.`);
+    const team = Array.isArray(data) ? data[0] : data;
+    showMessage(`Team created. Your join code is ${team.join_code}.`);
     await loadTeams();
 });
 
@@ -90,7 +112,13 @@ joinForm.addEventListener("submit", async (event) => {
 
     if (error) {
         console.error("Team join failed:", error);
-        showMessage("Could not join that team. Check the code and try again.", "error");
+        showMessage(
+            getTeamErrorMessage(
+                error,
+                "Could not join that team. Check the code and try again."
+            ),
+            "error"
+        );
         return;
     }
 

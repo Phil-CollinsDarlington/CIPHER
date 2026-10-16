@@ -352,6 +352,40 @@ a {
     color: var(--green);
 }
 
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.achievement-card {
+    padding: 24px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.achievement-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    color: var(--bg);
+    background: var(--green);
+    border-radius: 50%;
+    font-size: 1.4rem;
+}
+
+.achievement-card h3 {
+    margin: 0 0 8px;
+}
+
+.achievement-description,
+.achievement-card small {
+    color: var(--muted);
+}
+
 @media (max-width: 760px) {
     .team-actions {
         grid-template-columns: 1fr;

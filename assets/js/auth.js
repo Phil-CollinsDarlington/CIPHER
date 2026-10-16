@@ -86,6 +86,14 @@ function getFriendlyError(error) {
         return "Please verify your email address before logging in.";
     }
 
+    if (
+        message.includes("different from the old password") ||
+        message.includes("same as the old password") ||
+        message.includes("password is the same")
+    ) {
+        return "Your new password must be different from your old password.";
+    }
+
     if (message.includes("password should be at least")) {
         return "Your password is too short. Use a stronger password.";
     }
@@ -425,6 +433,128 @@ if (loginForm) {
 // ============================================================
 // 5. GOOGLE SIGN-IN
 // ============================================================
+
+const forgotPasswordForm =
+    document.getElementById("forgot-password-form");
+
+if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const submitButton =
+            document.getElementById("forgot-password-submit");
+        const email =
+            document.getElementById("forgot-password-email").value.trim();
+
+        clearMessage("forgot-password-message");
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+
+        try {
+            const { error } =
+                await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: new URL(
+                        "update-password.html",
+                        window.location.href
+                    ).href
+                });
+
+            if (error) {
+                throw error;
+            }
+
+            showMessage(
+                "forgot-password-message",
+                "If an account exists for that email, a reset link is on its way.",
+                "success"
+            );
+            forgotPasswordForm.reset();
+        } catch (error) {
+            showMessage(
+                "forgot-password-message",
+                getFriendlyError(error)
+            );
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Send reset link";
+        }
+    });
+}
+
+const updatePasswordForm =
+    document.getElementById("update-password-form");
+
+if (updatePasswordForm) {
+    updatePasswordForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const submitButton =
+            document.getElementById("update-password-submit");
+        const password =
+            document.getElementById("new-password").value;
+        const confirmPassword =
+            document.getElementById("confirm-new-password").value;
+
+        clearMessage("update-password-message");
+
+        if (password.length < 10) {
+            showMessage(
+                "update-password-message",
+                "Use a password containing at least 10 characters."
+            );
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            showMessage(
+                "update-password-message",
+                "The two passwords do not match."
+            );
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Updating...";
+
+        try {
+            const { error } =
+                await supabase.auth.updateUser({ password });
+
+            if (error) {
+                throw error;
+            }
+
+            showMessage(
+                "update-password-message",
+                "Password updated. Opening your dashboard...",
+                "success"
+            );
+            updatePasswordForm.reset();
+            setTimeout(openDashboard, 900);
+        } catch (error) {
+            showMessage(
+                "update-password-message",
+                getFriendlyError(error)
+            );
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Update password";
+        }
+    });
+}
+
+if (updatePasswordForm) {
+    const { data: authListener } =
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (event === "PASSWORD_RECOVERY" && session) {
+                clearMessage("update-password-message");
+            }
+        });
+
+    if (!authListener) {
+        console.error("CIPHER password recovery listener was not created.");
+    }
+}
 
 /**
  * Begin Google OAuth.
