@@ -358,7 +358,7 @@ async function loadCheckpoints() {
 
     checkpointTableBody.innerHTML = `
         <tr>
-            <td colspan="6">
+            <td colspan="7">
                 Loading checkpoints...
             </td>
         </tr>
@@ -394,7 +394,7 @@ async function loadCheckpoints() {
 
         checkpointTableBody.innerHTML = `
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                     Could not load checkpoints.
                     Check the browser console.
                 </td>
@@ -413,7 +413,7 @@ async function loadCheckpoints() {
 
         checkpointTableBody.innerHTML = `
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                     No checkpoints created yet.
                 </td>
             </tr>
@@ -456,19 +456,100 @@ async function loadCheckpoints() {
                 ? "Published"
                 : "Unpublished";
 
+        const qrCell = document.createElement("td");
+
+        if (checkpoint.checkpoint_type === "qr_checkpoint") {
+            const qrButton = document.createElement("button");
+
+            qrButton.type = "button";
+            qrButton.className = "button button-secondary";
+            qrButton.textContent = "Generate QR";
+            qrButton.disabled = !checkpoint.is_published;
+            qrButton.title = checkpoint.is_published
+                ? "Generate a QR code for this checkpoint"
+                : "Publish this checkpoint before generating its QR code";
+
+            qrButton.addEventListener("click", () => {
+                showCheckpointQr(checkpoint);
+            });
+
+            qrCell.appendChild(qrButton);
+        } else {
+            qrCell.textContent = "Not applicable";
+        }
+
         row.append(
             titleCell,
             missionCell,
             typeCell,
             orderCell,
             pointsCell,
-            statusCell
+            statusCell,
+            qrCell
         );
 
         checkpointTableBody.appendChild(row);
 
     });
 
+}
+
+function showCheckpointQr(checkpoint) {
+    if (typeof QRCode === "undefined") {
+        showMessage(
+            "The QR generator could not be loaded. Check your connection and try again.",
+            "error"
+        );
+        return;
+    }
+
+    const checkpointUrl = new URL(
+        `challenge.html?checkpoint=${encodeURIComponent(checkpoint.id)}`,
+        window.location.href
+    ).href;
+
+    const overlay = document.createElement("div");
+    overlay.className = "qr-overlay";
+    overlay.innerHTML = `
+        <div class="qr-dialog" role="dialog" aria-modal="true"
+            aria-labelledby="qr-dialog-title">
+            <button type="button" class="qr-close" aria-label="Close QR code">
+                &times;
+            </button>
+            <h2 id="qr-dialog-title"></h2>
+            <div class="qr-code" id="qr-code"></div>
+            <p class="qr-url"></p>
+            <button type="button" class="button button-primary qr-print">
+                Print QR code
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    overlay.querySelector("#qr-dialog-title").textContent =
+        checkpoint.title;
+    overlay.querySelector(".qr-url").textContent = checkpointUrl;
+
+    new QRCode(overlay.querySelector("#qr-code"), {
+        text: checkpointUrl,
+        width: 256,
+        height: 256,
+        colorDark: "#0b0e0d",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    const close = () => overlay.remove();
+
+    overlay.querySelector(".qr-close").addEventListener("click", close);
+    overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+            close();
+        }
+    });
+    overlay.querySelector(".qr-print").addEventListener("click", () => {
+        window.print();
+    });
 }
 
 

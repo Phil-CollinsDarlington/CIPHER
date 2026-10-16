@@ -81,6 +81,81 @@ button {
     cursor: pointer;
 }
 
+.qr-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.78);
+}
+
+.qr-dialog {
+    position: relative;
+    width: min(420px, 100%);
+    padding: 28px;
+    color: var(--admin-text);
+    background: var(--admin-panel);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+    text-align: center;
+}
+
+.qr-dialog h2 {
+    margin-top: 0;
+}
+
+.qr-code {
+    width: 256px;
+    min-height: 256px;
+    margin: 20px auto;
+    padding: 10px;
+    background: white;
+}
+
+.qr-code img {
+    display: block;
+}
+
+.qr-url {
+    color: var(--admin-muted);
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
+}
+
+.qr-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: 0;
+    color: var(--admin-muted);
+    background: transparent;
+    font-size: 1.8rem;
+}
+
+@media print {
+    body > *:not(.qr-overlay) {
+        display: none !important;
+    }
+
+    .qr-overlay {
+        position: static;
+        background: white;
+    }
+
+    .qr-dialog {
+        color: black;
+        border: 0;
+    }
+
+    .qr-close,
+    .qr-print,
+    .qr-url {
+        display: none;
+    }
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,

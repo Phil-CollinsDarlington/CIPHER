@@ -1,5 +1,13 @@
 const themeKey = "cipher-dashboard-theme";
-const validThemes = ["cipher", "ocean", "ember", "violet"];
+const validThemes = [
+    "cipher",
+    "ocean",
+    "ember",
+    "violet",
+    "forest",
+    "crimson",
+    "midnight"
+];
 const savedTheme = localStorage.getItem(themeKey);
 const initialTheme = validThemes.includes(savedTheme)
     ? savedTheme

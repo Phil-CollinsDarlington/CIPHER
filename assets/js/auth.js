@@ -118,6 +118,25 @@ function getFriendlyError(error) {
  */
 function openDashboard() {
 
+    const requestedRedirect =
+        new URLSearchParams(window.location.search).get("redirect");
+
+    if (requestedRedirect) {
+        try {
+            const redirectUrl = new URL(
+                requestedRedirect,
+                window.location.origin
+            );
+
+            if (redirectUrl.origin === window.location.origin) {
+                window.location.assign(redirectUrl.href);
+                return;
+            }
+        } catch (error) {
+            console.error("CIPHER redirect URL is invalid:", error);
+        }
+    }
+
     window.location.assign(
         new URL("dashboard.html", window.location.href).href
     );

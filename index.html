@@ -80,9 +80,26 @@
             <a href="#leaderboard">Leaderboard</a>
             <a href="dashboard.html">Dashboard</a>
 
-            <a href="login.html" class="nav-login">Log In</a>
-            <a href="login.html" class="button button-small button-primary">
-                Enter CIPHER <span aria-hidden="true">↗</span>
+            <a
+                href="login.html"
+                class="nav-login"
+                data-auth-destination="dashboard.html"
+                data-auth-label="Dashboard"
+                data-default-auth-label="Log In"
+                data-hide-when-authenticated
+            >
+                <span>Log In</span>
+            </a>
+            <a
+                href="login.html"
+                class="button button-small button-primary"
+                data-auth-destination="dashboard.html"
+                data-auth-label="Dashboard"
+                data-default-auth-label="Enter CIPHER"
+                data-hide-when-authenticated
+            >
+                <span>Enter CIPHER</span>
+                <span aria-hidden="true">↗</span>
             </a>
 
         </div>
@@ -470,7 +487,11 @@
                     and earn your place in CIPHER history.
                 </p>
 
-                <a href="login.html" class="button button-primary">
+                <a
+                    href="login.html"
+                    class="button button-primary"
+                    data-auth-destination="dashboard.html"
+                >
                     View Rankings <span aria-hidden="true">↗</span>
                 </a>
 
@@ -569,8 +590,12 @@
             <a
                 class="button button-primary"
                 href="login.html"
+                data-auth-destination="dashboard.html"
+                data-auth-label="Open Dashboard"
+                data-default-auth-label="Initialize CIPHER"
             >
-                Initialize CIPHER <span aria-hidden="true">↗</span>
+                <span>Initialize CIPHER</span>
+                <span aria-hidden="true">↗</span>
             </a>
 
             <p class="cta-footnote">
@@ -619,6 +644,8 @@
 
 </footer>
 ```
+
+<script type="module" src="assets/js/home.js"></script>
 
 </body>
 </html>

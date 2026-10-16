@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams | CIPHER</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+</head>
+<body class="teams-page-body">
+    <main class="dashboard-main team-page">
+        <header class="dashboard-header">
+            <div>
+                <span class="eyebrow">PLAYER NETWORK</span>
+                <h1>Teams</h1>
+            </div>
+            <a class="account-chip" href="dashboard.html">Back to dashboard</a>
+        </header>
+
+        <div id="team-message" class="dashboard-message visible" role="status">
+            Checking your CIPHER session...
+        </div>
+
+        <section class="content-section team-actions" aria-label="Team actions">
+            <article class="panel">
+                <span class="eyebrow">CREATE</span>
+                <h2>Start a team</h2>
+                <p>Invite other players with the join code generated for your team.</p>
+                <form id="create-team-form">
+                    <label for="team-name">Team name</label>
+                    <input id="team-name" name="name" maxlength="80" required>
+                    <button class="primary-button" type="submit">Create team</button>
+                </form>
+            </article>
+
+            <article class="panel">
+                <span class="eyebrow">JOIN</span>
+                <h2>Join a team</h2>
+                <p>Enter the code shared by your team captain.</p>
+                <form id="join-team-form">
+                    <label for="team-code">Join code</label>
+                    <input id="team-code" name="code" maxlength="12" required>
+                    <button class="primary-button" type="submit">Join team</button>
+                </form>
+            </article>
+        </section>
+
+        <section class="content-section">
+            <div class="section-heading">
+                <h2>Your teams</h2>
+            </div>
+            <div id="teams-list" class="empty-state">
+                Loading your teams...
+            </div>
+        </section>
+    </main>
+    <script type="module" src="assets/js/teams.js"></script>
+    <script type="module" src="assets/js/theme.js"></script>
+</body>
+</html>

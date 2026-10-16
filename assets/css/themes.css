@@ -108,23 +108,140 @@ body[data-theme="violet"] {
     --admin-green-dark: #342052;
 }
 
+body[data-theme="forest"] {
+    --bg: #07110c;
+    --bg-soft: #0c1b12;
+    --surface: #102319;
+    --surface-raised: #173322;
+    --panel: #102319;
+    --panel-light: #173322;
+    --green: #68e08b;
+    --green-bright: #9af2ae;
+    --green-dark: #389e5a;
+    --white: #effff2;
+    --silver: #b3cdb8;
+    --muted: #8eaa95;
+    --border: rgba(104, 224, 139, 0.16);
+    --green-border: rgba(104, 224, 139, 0.24);
+    --green-glow: 0 0 35px rgba(104, 224, 139, 0.1);
+    --cipher-bg: #07110c;
+    --cipher-panel: #102319;
+    --cipher-panel-light: #173322;
+    --cipher-green: #68e08b;
+    --cipher-green-dark: #389e5a;
+    --cipher-text: #effff2;
+    --cipher-muted: #8eaa95;
+    --cipher-border: rgba(104, 224, 139, 0.17);
+    --cipher-success: #68e08b;
+    --admin-bg: #07110c;
+    --admin-sidebar: #102319;
+    --admin-panel: #173322;
+    --admin-panel-hover: #21472e;
+    --admin-border: #315d3d;
+    --admin-text: #effff2;
+    --admin-muted: #8eaa95;
+    --admin-green: #68e08b;
+    --admin-green-dark: #183f25;
+}
+
+body[data-theme="crimson"] {
+    --bg: #14080b;
+    --bg-soft: #211014;
+    --surface: #2b141a;
+    --surface-raised: #3a1b23;
+    --panel: #2b141a;
+    --panel-light: #3a1b23;
+    --green: #ff6f91;
+    --green-bright: #ff9fb3;
+    --green-dark: #c83f60;
+    --white: #fff1f4;
+    --silver: #d3aeb7;
+    --muted: #b58b96;
+    --border: rgba(255, 111, 145, 0.16);
+    --green-border: rgba(255, 111, 145, 0.24);
+    --green-glow: 0 0 35px rgba(255, 111, 145, 0.1);
+    --cipher-bg: #14080b;
+    --cipher-panel: #2b141a;
+    --cipher-panel-light: #3a1b23;
+    --cipher-green: #ff6f91;
+    --cipher-green-dark: #c83f60;
+    --cipher-text: #fff1f4;
+    --cipher-muted: #b58b96;
+    --cipher-border: rgba(255, 111, 145, 0.17);
+    --cipher-success: #ff6f91;
+    --admin-bg: #14080b;
+    --admin-sidebar: #2b141a;
+    --admin-panel: #3a1b23;
+    --admin-panel-hover: #512631;
+    --admin-border: #713646;
+    --admin-text: #fff1f4;
+    --admin-muted: #b58b96;
+    --admin-green: #ff6f91;
+    --admin-green-dark: #551d2b;
+}
+
+body[data-theme="midnight"] {
+    --bg: #070b18;
+    --bg-soft: #0d1428;
+    --surface: #111b34;
+    --surface-raised: #192746;
+    --panel: #111b34;
+    --panel-light: #192746;
+    --green: #7ea7ff;
+    --green-bright: #adc6ff;
+    --green-dark: #4d72c9;
+    --white: #f0f4ff;
+    --silver: #b5c2dd;
+    --muted: #8f9fbe;
+    --border: rgba(126, 167, 255, 0.16);
+    --green-border: rgba(126, 167, 255, 0.24);
+    --green-glow: 0 0 35px rgba(126, 167, 255, 0.1);
+    --cipher-bg: #070b18;
+    --cipher-panel: #111b34;
+    --cipher-panel-light: #192746;
+    --cipher-green: #7ea7ff;
+    --cipher-green-dark: #4d72c9;
+    --cipher-text: #f0f4ff;
+    --cipher-muted: #8f9fbe;
+    --cipher-border: rgba(126, 167, 255, 0.17);
+    --cipher-success: #7ea7ff;
+    --admin-bg: #070b18;
+    --admin-sidebar: #111b34;
+    --admin-panel: #192746;
+    --admin-panel-hover: #243861;
+    --admin-border: #354d7c;
+    --admin-text: #f0f4ff;
+    --admin-muted: #8f9fbe;
+    --admin-green: #7ea7ff;
+    --admin-green-dark: #1d3265;
+}
+
 body[data-theme="ocean"] .profile-card,
 body[data-theme="ember"] .profile-card,
-body[data-theme="violet"] .profile-card {
+body[data-theme="violet"] .profile-card,
+body[data-theme="forest"] .profile-card,
+body[data-theme="crimson"] .profile-card,
+body[data-theme="midnight"] .profile-card {
     background: var(--cipher-panel);
     border-color: var(--cipher-border);
 }
 
 body[data-theme="ocean"] .profile-form input,
 body[data-theme="ember"] .profile-form input,
-body[data-theme="violet"] .profile-form input {
+body[data-theme="violet"] .profile-form input,
+body[data-theme="forest"] .profile-form input,
+body[data-theme="crimson"] .profile-form input,
+body[data-theme="midnight"] .profile-form input {
     background: var(--cipher-bg);
     border-color: var(--cipher-border);
 }
 
 body[data-theme="ocean"] .profile-form button,
 body[data-theme="ember"] .profile-form button,
-body[data-theme="violet"] .profile-form button {
+body[data-theme="violet"] .profile-form button,
+body[data-theme="forest"] .profile-form button,
+body[data-theme="crimson"] .profile-form button,
+body[data-theme="midnight"] .profile-form button {
     background: var(--cipher-green);
     color: var(--cipher-bg);
 }
@@ -134,7 +251,13 @@ body[data-theme="ocean"] .profile-actions button,
 body[data-theme="ember"] .profile-actions a,
 body[data-theme="ember"] .profile-actions button,
 body[data-theme="violet"] .profile-actions a,
-body[data-theme="violet"] .profile-actions button {
+body[data-theme="violet"] .profile-actions button,
+body[data-theme="forest"] .profile-actions a,
+body[data-theme="forest"] .profile-actions button,
+body[data-theme="crimson"] .profile-actions a,
+body[data-theme="crimson"] .profile-actions button,
+body[data-theme="midnight"] .profile-actions a,
+body[data-theme="midnight"] .profile-actions button {
     border-color: var(--cipher-border);
     background: transparent;
     color: var(--cipher-text);
