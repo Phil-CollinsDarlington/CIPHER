@@ -15,6 +15,20 @@
                 Verifying your checkpoint access...
             </p>
             <div id="challenge-clue" class="challenge-clue" hidden></div>
+            <form id="answer-form" class="answer-form" hidden>
+                <label for="challenge-answer">Your answer</label>
+                <input
+                    id="challenge-answer"
+                    name="answer"
+                    autocomplete="off"
+                    required
+                >
+                <button id="answer-submit" class="challenge-button" type="submit">
+                    Submit answer
+                </button>
+            </form>
+            <div id="answer-message" class="challenge-message" role="status"
+                aria-live="polite"></div>
         </article>
     </main>
     <script type="module" src="assets/js/challenge.js"></script>

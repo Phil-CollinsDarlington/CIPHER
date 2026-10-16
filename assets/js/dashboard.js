@@ -98,6 +98,84 @@ function formatDate(timestamp) {
     }).format(date);
 }
 
+function renderDashboardChallenges(challenges) {
+    const list = document.getElementById("dashboard-challenge-list");
+
+    if (!list) {
+        return;
+    }
+
+    if (!challenges.length) {
+        list.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-symbol" aria-hidden="true">⌁</div>
+                <h3>No active challenges yet.</h3>
+                <p>Check back when the next mission is published.</p>
+            </div>
+        `;
+        return;
+    }
+
+    list.innerHTML = "";
+
+    challenges.forEach((challenge) => {
+        const card = document.createElement("article");
+        card.className = "dashboard-challenge-card";
+        card.innerHTML = `
+            <span class="stat-label"></span>
+            <h3></h3>
+            <p class="challenge-description"></p>
+            <div class="challenge-card-footer">
+                <span class="challenge-points"></span>
+                <span class="challenge-status"></span>
+            </div>
+        `;
+
+        card.querySelector(".stat-label").textContent =
+            challenge.challenge_type;
+        card.querySelector("h3").textContent = challenge.title;
+        card.querySelector(".challenge-description").textContent =
+            challenge.description;
+        card.querySelector(".challenge-points").textContent =
+            `${challenge.max_points} points`;
+        card.querySelector(".challenge-status").textContent =
+            challenge.status === "active" ? "Active now" : "Published";
+        list.appendChild(card);
+    });
+}
+
+async function loadDashboardData() {
+    const [
+        { data: stats, error: statsError },
+        { data: challenges, error: challengesError }
+    ] = await Promise.all([
+        supabase.rpc("get_player_stats"),
+        supabase
+            .from("challenges")
+            .select(
+                "id, title, description, challenge_type, status, max_points, starts_at, ends_at"
+            )
+            .in("status", ["published", "active"])
+            .order("starts_at", { ascending: true, nullsFirst: false }),
+    ]);
+
+    if (statsError) {
+        throw statsError;
+    }
+
+    if (challengesError) {
+        throw challengesError;
+    }
+
+    const playerStats = Array.isArray(stats) ? stats[0] : stats;
+
+    setText("total-points", playerStats?.total_points ?? 0);
+    setText("challenges-solved", playerStats?.challenges_solved ?? 0);
+    setText("achievement-count", playerStats?.achievement_count ?? 0);
+    setText("team-status", playerStats?.team_name || "Solo player");
+    renderDashboardChallenges(challenges || []);
+}
+
 
 // ============================================================
 // 3. LOAD PLAYER INFORMATION
@@ -267,6 +345,8 @@ async function loadPlayerDashboard() {
             "profile-created",
             formatDate(profile?.created_at || user.created_at)
         );
+
+        await loadDashboardData(user.id);
 
 
         // ----------------------------------------------------

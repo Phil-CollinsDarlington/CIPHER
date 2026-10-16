@@ -1,0 +1,43 @@
+.leaderboard-page {
+    min-height: 100vh;
+}
+
+.leaderboard-section {
+    margin-bottom: 42px;
+}
+
+.live-leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    overflow: hidden;
+}
+
+.live-leaderboard th,
+.live-leaderboard td {
+    padding: 15px 16px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.live-leaderboard th {
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.live-leaderboard td:first-child {
+    color: var(--green);
+    font-weight: 800;
+}
+
+.live-leaderboard td:nth-child(n + 3) {
+    white-space: nowrap;
+}
+
+.live-leaderboard tbody tr:last-child td {
+    border-bottom: 0;
+}

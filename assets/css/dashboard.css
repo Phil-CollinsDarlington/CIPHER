@@ -759,6 +759,39 @@ a {
     line-height: 1.6;
 }
 
+.dashboard-challenge-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.dashboard-challenge-card {
+    padding: 22px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+}
+
+.dashboard-challenge-card h3 {
+    margin: 10px 0;
+}
+
+.challenge-description {
+    min-height: 48px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.challenge-card-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
 
 /* ============================================================
    11. CONTENT SECTIONS

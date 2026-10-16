@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboards | CIPHER</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/leaderboard.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+</head>
+<body class="teams-page-body">
+    <main class="dashboard-main leaderboard-page">
+        <header class="dashboard-header">
+            <div>
+                <span class="eyebrow">CIPHER RANKINGS</span>
+                <h1>Leaderboards</h1>
+            </div>
+            <a class="account-chip" href="dashboard.html">Back to dashboard</a>
+        </header>
+
+        <div id="leaderboard-message" class="dashboard-message visible" role="status">
+            Loading rankings...
+        </div>
+
+        <section class="leaderboard-section">
+            <div class="section-heading">
+                <h2>Individual players</h2>
+            </div>
+            <div class="table-wrapper">
+                <table class="live-leaderboard">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Points</th>
+                            <th>Checkpoints</th>
+                        </tr>
+                    </thead>
+                    <tbody id="individual-leaderboard"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="leaderboard-section">
+            <div class="section-heading">
+                <h2>Teams</h2>
+            </div>
+            <div class="table-wrapper">
+                <table class="live-leaderboard">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Team</th>
+                            <th>Points</th>
+                            <th>Checkpoints</th>
+                            <th>Members</th>
+                        </tr>
+                    </thead>
+                    <tbody id="team-leaderboard"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="assets/js/leaderboard.js"></script>
+    <script type="module" src="assets/js/theme.js"></script>
+</body>
+</html>
