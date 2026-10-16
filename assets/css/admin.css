@@ -134,6 +134,28 @@ button {
     font-size: 1.8rem;
 }
 
+.checkpoint-status-button {
+    display: block;
+    margin-top: 8px;
+    padding: 6px 9px;
+    font-size: 0.72rem;
+}
+
+.checkpoint-table .checkpoint-status-button {
+    min-height: 30px;
+    padding: 6px 9px;
+}
+
+@media (max-width: 760px) {
+    .checkpoint-library-panel {
+        padding: 16px;
+    }
+
+    .checkpoint-table {
+        min-width: 760px;
+    }
+}
+
 @media print {
     body > *:not(.qr-overlay) {
         display: none !important;
@@ -657,6 +679,80 @@ select:focus-visible {
 
 .challenge-table tbody tr:last-child td {
     border-bottom: 0;
+}
+
+.checkpoint-table {
+    width: 100%;
+    min-width: 820px;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.checkpoint-table th {
+    padding: 13px 12px;
+    color: var(--admin-muted);
+    background: #101412;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.checkpoint-table td {
+    padding: 14px 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.checkpoint-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.checkpoint-table th:first-child,
+.checkpoint-table td:first-child {
+    min-width: 180px;
+}
+
+.checkpoint-table th:nth-child(2),
+.checkpoint-table td:nth-child(2) {
+    min-width: 160px;
+}
+
+.checkpoint-table th:nth-child(3),
+.checkpoint-table td:nth-child(3) {
+    min-width: 130px;
+}
+
+.checkpoint-table th:nth-child(4),
+.checkpoint-table th:nth-child(5),
+.checkpoint-table td:nth-child(4),
+.checkpoint-table td:nth-child(5) {
+    width: 75px;
+    text-align: center;
+}
+
+.checkpoint-table th:nth-child(6),
+.checkpoint-table td:nth-child(6) {
+    min-width: 125px;
+}
+
+.checkpoint-table th:last-child,
+.checkpoint-table td:last-child {
+    min-width: 135px;
+}
+
+.checkpoint-table td:nth-child(6) {
+    color: var(--admin-muted);
+}
+
+.checkpoint-table td:nth-child(6) .checkpoint-status-button,
+.checkpoint-table td:last-child .button {
+    white-space: nowrap;
+}
+
+.checkpoint-table td:last-child .button {
+    padding: 8px 10px;
+    min-height: 34px;
+    font-size: 11px;
 }
 
 .table-placeholder {

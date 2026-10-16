@@ -451,10 +451,25 @@ async function loadCheckpoints() {
 
         const statusCell = document.createElement("td");
 
-        statusCell.textContent =
-            checkpoint.is_published
-                ? "Published"
-                : "Unpublished";
+        const statusLabel = document.createElement("span");
+        statusLabel.textContent =
+            checkpoint.is_published ? "Published" : "Unpublished";
+        statusCell.appendChild(statusLabel);
+
+        const publishButton = document.createElement("button");
+        publishButton.type = "button";
+        publishButton.className = "button button-secondary checkpoint-status-button";
+        publishButton.textContent = checkpoint.is_published
+            ? "Unpublish"
+            : "Publish";
+        publishButton.addEventListener("click", () => {
+            updateCheckpointPublication(
+                checkpoint,
+                publishButton,
+                statusLabel
+            );
+        });
+        statusCell.appendChild(publishButton);
 
         const qrCell = document.createElement("td");
 
@@ -494,6 +509,50 @@ async function loadCheckpoints() {
 
 }
 
+async function updateCheckpointPublication(
+    checkpoint,
+    button,
+    statusLabel
+) {
+    button.disabled = true;
+    button.textContent = "Saving...";
+
+    const nextPublishedState = !checkpoint.is_published;
+    const { error } = await supabase
+        .from("challenge_checkpoints")
+        .update({ is_published: nextPublishedState })
+        .eq("id", checkpoint.id);
+
+    if (error) {
+        console.error("Checkpoint publication update failed:", error);
+        showMessage(
+            "The checkpoint publication status could not be updated.",
+            "error"
+        );
+        button.disabled = false;
+        button.textContent = checkpoint.is_published
+            ? "Unpublish"
+            : "Publish";
+        return;
+    }
+
+    checkpoint.is_published = nextPublishedState;
+    statusLabel.textContent = nextPublishedState
+        ? "Published"
+        : "Unpublished";
+    button.disabled = false;
+    button.textContent = nextPublishedState
+        ? "Unpublish"
+        : "Publish";
+    await loadCheckpoints();
+    showMessage(
+        nextPublishedState
+            ? `Checkpoint "${checkpoint.title}" is now published.`
+            : `Checkpoint "${checkpoint.title}" is now unpublished.`,
+        "success"
+    );
+}
+
 function showCheckpointQr(checkpoint) {
     if (typeof QRCode === "undefined") {
         showMessage(
@@ -530,14 +589,24 @@ function showCheckpointQr(checkpoint) {
         checkpoint.title;
     overlay.querySelector(".qr-url").textContent = checkpointUrl;
 
-    new QRCode(overlay.querySelector("#qr-code"), {
-        text: checkpointUrl,
-        width: 256,
-        height: 256,
-        colorDark: "#0b0e0d",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
-    });
+    try {
+        new QRCode(overlay.querySelector("#qr-code"), {
+            text: checkpointUrl,
+            width: 256,
+            height: 256,
+            colorDark: "#0b0e0d",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    } catch (error) {
+        console.error("QR code generation failed:", error);
+        overlay.remove();
+        showMessage(
+            "The QR code could not be generated. Check the checkpoint ID and try again.",
+            "error"
+        );
+        return;
+    }
 
     const close = () => overlay.remove();
 
